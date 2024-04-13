@@ -17,7 +17,7 @@ spec:
             containers:
                 - name: auth
                   image: benukapunchihewa/auth-service:latest
-                  imagePullPolicy: IfNotPresent
+                  imagePullPolicy: Always
                   ports:
                       - containerPort: 5001
                   env:
