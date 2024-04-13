@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: auth-config
+data:
+  mongo-url: mongodb+srv://benuka1999:iddkSUNa6D1Tjjjh@cluster0.w2owo1e.mongodb.net/auth-db?retryWrites=true&w=majority
+  jwt-secret: A5XUwvyo882oAREGrJMXz2q5vsbXwfMY
+  service-access-token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhY2Nlc3NSb2xlIjoic2VydmljZSIsImlhdCI6MTY4MTE0OTMxMX0.zk0-ODNOz5ugnHkzRSlHcWlx-qPGSvVi7KkKG55bpLs
+  user-service-base-url: http://user-service:5002

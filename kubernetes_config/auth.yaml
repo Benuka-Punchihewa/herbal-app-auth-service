@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+    name: auth-deployment
+    labels:
+        app: auth
+spec:
+    replicas: 1
+    selector:
+        matchLabels:
+            app: auth
+    template:
+        metadata:
+            labels:
+                app: auth
+        spec:
+            containers:
+                - name: auth
+                  image: benukapunchihewa/auth-service:latest
+                  imagePullPolicy: IfNotPresent
+                  ports:
+                      - containerPort: 5001
+                  env:
+                      - name: MONGO_URL
+                        valueFrom:
+                            configMapKeyRef:
+                                name: auth-config
+                                key: mongo-url
+                      - name: JWT_SECRET
+                        valueFrom:
+                            configMapKeyRef:
+                                name: auth-config
+                                key: jwt-secret
+                      - name: SERVICE_ACCESS_TOKEN
+                        valueFrom:
+                            configMapKeyRef:
+                                name: auth-config
+                                key: service-access-token
+                      - name: USER_SERVICE_BASE_URL
+                        valueFrom:
+                            configMapKeyRef:
+                                name: auth-config
+                                key: user-service-base-url
+---
+apiVersion: v1
+kind: Service
+metadata:
+    name: auth-service
+spec:
+    selector:
+        app: auth
+    ports:
+        - protocol: TCP
+          port: 5001
+          targetPort: 5001
