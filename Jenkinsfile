@@ -26,7 +26,7 @@ pipeline {
         stage('Deploy auth service to k8s') {
             steps {
                 script {
-                    withKubeConfig([credentialsId: '68fa5218-2e07-4c4b-8cc6-2d2024ce171a', serverUrl: 'https://192.168.49.2:8443']) {
+                    withKubeConfig([credentialsId: 'google-cloud-service-account', serverUrl: 'https://34.28.106.92']) {
                         dir('kubernetes_config') {
                             sh 'kubectl apply -f auth-config.yaml'
                             sh 'kubectl apply -f auth.yaml'
