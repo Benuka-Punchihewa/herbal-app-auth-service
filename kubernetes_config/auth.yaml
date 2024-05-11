@@ -18,6 +18,13 @@ spec:
                 - name: auth
                   image: benukapunchihewa/auth-service:latest
                   imagePullPolicy: Always
+                  resources:
+                      requests:
+                          memory: "250Mi"
+                          cpu: "150m"
+                      limits:
+                          memory: "500Mi"
+                          cpu: "200m"
                   ports:
                       - containerPort: 5001
                   env:
