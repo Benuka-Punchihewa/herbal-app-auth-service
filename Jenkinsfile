@@ -29,7 +29,7 @@ pipeline {
             agent { label 'zink' }
             steps {
                 script {
-                    withKubeConfig([credentialsId: 'google-cloud-service-account', serverUrl: 'https://34.28.106.92']) {
+                    withKubeConfig([credentialsId: 'google-cloud-service-account', serverUrl: 'https://104.196.35.11']) {
                         dir('kubernetes_config') {
                             sh 'kubectl apply -f auth-config.yaml'
                             sh 'kubectl apply -f auth.yaml'
