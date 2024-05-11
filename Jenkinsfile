@@ -8,6 +8,7 @@ pipeline {
         }
 
         stage('Build auth service docker images'){
+            agent { label 'copper' }
             steps{
                 script{
                     dockerImage = docker.build("benukapunchihewa/auth-service:latest")
@@ -15,6 +16,7 @@ pipeline {
             }
         }
         stage('Push auth service image to Hub'){
+            agent { label 'copper' }
             steps{
                 script{
                    withDockerRegistry([ credentialsId: "dockerHub", url: "" ]) {
@@ -24,6 +26,7 @@ pipeline {
             }
         }
         stage('Deploy auth service to k8s') {
+            agent { label 'zink' }
             steps {
                 script {
                     withKubeConfig([credentialsId: 'google-cloud-service-account', serverUrl: 'https://34.28.106.92']) {
